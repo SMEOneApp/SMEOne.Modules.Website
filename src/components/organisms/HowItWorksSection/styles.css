@@ -1,0 +1,132 @@
+.section--how {
+  padding: 80px 0 0;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.step-card {
+  position: relative;
+  min-height: 600px;
+  padding: 104px 28px 0;
+  border-radius: 30px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(247, 249, 252, 0.95)
+  );
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+  animation: fade-up 0.8s ease-out both;
+}
+
+.steps-grid .step-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.steps-grid .step-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.steps-grid .step-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.steps-grid .step-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.step-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 28px 60px rgba(17, 24, 39, 0.16);
+}
+
+.step-number {
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  font-size: 118px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(11, 16, 42, 0.05);
+  transition: transform 0.35s ease, color 0.35s ease;
+}
+
+.step-card h3 {
+  margin: 0;
+  max-width: 220px;
+  font-size: clamp(1.45rem, 3vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+  color: #060535;
+}
+
+.step-card p {
+  margin: 18px 0 0;
+  max-width: 290px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #7d7d7d;
+}
+
+.step-card:hover .step-number {
+  transform: translateX(-10px);
+  color: rgba(11, 16, 42, 0.11);
+}
+
+.step-visual {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.step-card--tall .step-visual img,
+.step-card--angled .step-visual img {
+  width: 100%;
+}
+
+.step-visual img {
+  transition: transform 0.4s ease;
+}
+
+.step-card:hover .step-visual img {
+  transform: translateY(-8px) scale(1.02);
+}
+
+@media (max-width: 1200px) {
+  .steps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .section--how {
+    padding: 72px 0 90px;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card {
+    min-height: auto;
+    padding: 88px 24px 28px;
+  }
+
+  .step-visual {
+    position: static;
+    margin-top: 28px;
+  }
+}
