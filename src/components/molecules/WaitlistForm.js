@@ -3,15 +3,30 @@ import Input from "../atoms/Input";
 import Button from "../atoms/Button";
 
 const WaitlistForm = ({ compact = false }) => {
-  const inputId = useId();
+  const emailInputId = useId();
+  const firstNameInputId = useId();
+  const lastNameInputId = useId();
   const statusId = useId();
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [step, setStep] = useState("email");
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState("idle");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event) => {
+  const resetForm = () => {
+    setEmail("");
+    setFirstName("");
+    setLastName("");
+    setStep("email");
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const trimmedEmail = email.trim();
+    const trimmedFirstName = firstName.trim();
+    const trimmedLastName = lastName.trim();
 
     if (!trimmedEmail || !/\S+@\S+\.\S+/.test(trimmedEmail)) {
       setStatus("Please enter a valid email address.");
@@ -19,9 +34,51 @@ const WaitlistForm = ({ compact = false }) => {
       return;
     }
 
-    setStatus("You’re on the list. We’ll reach out before launch.");
-    setStatusType("success");
-    setEmail("");
+    if (step === "email") {
+      setStatus("Add your first and last name to finish joining the waitlist.");
+      setStatusType("idle");
+      setStep("details");
+      return;
+    }
+
+    if (!trimmedFirstName || !trimmedLastName) {
+      setStatus("Please enter your first name and last name.");
+      setStatusType("error");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatus("Submitting your details...");
+    setStatusType("idle");
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: trimmedEmail,
+          firstName: trimmedFirstName,
+          lastName: trimmedLastName,
+        }),
+      });
+
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(payload.message || "Unable to join the waitlist.");
+      }
+
+      setStatus("You’re on the list. We’ll reach out before launch.");
+      setStatusType("success");
+      resetForm();
+    } catch (error) {
+      setStatus(error.message || "Unable to join the waitlist.");
+      setStatusType("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -31,7 +88,7 @@ const WaitlistForm = ({ compact = false }) => {
     >
       <div className="waitlist-form__controls">
         <Input
-          id={inputId}
+          id={emailInputId}
           type="email"
           value={email}
           placeholder="Enter your email"
@@ -40,9 +97,42 @@ const WaitlistForm = ({ compact = false }) => {
           aria-invalid={statusType === "error"}
           autoComplete="email"
           required
+          disabled={step === "details" || isSubmitting}
           onChange={(event) => setEmail(event.target.value)}
         />
-        <Button type="submit">Join Waitlist</Button>
+        {step === "details" && (
+          <>
+            <Input
+              id={firstNameInputId}
+              type="text"
+              value={firstName}
+              placeholder="First name"
+              aria-label="First name"
+              autoComplete="given-name"
+              required
+              disabled={isSubmitting}
+              onChange={(event) => setFirstName(event.target.value)}
+            />
+            <Input
+              id={lastNameInputId}
+              type="text"
+              value={lastName}
+              placeholder="Last name"
+              aria-label="Last name"
+              autoComplete="family-name"
+              required
+              disabled={isSubmitting}
+              onChange={(event) => setLastName(event.target.value)}
+            />
+          </>
+        )}
+        <Button type="submit" disabled={isSubmitting}>
+          {step === "email"
+            ? "Join Waitlist"
+            : isSubmitting
+              ? "Submitting..."
+              : "Complete Signup"}
+        </Button>
       </div>
       <p
         id={statusId}

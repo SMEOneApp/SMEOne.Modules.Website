@@ -2,6 +2,27 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Local waitlist API setup
+
+The waitlist form now posts to `/api/waitlist`. In local development, that route is served by the Node server in [server.js](./server.js), not by Create React App itself.
+
+1. Create a `.env` file in the project root by copying `.env.example`.
+2. Set `BREVO_API_KEY` to your current Brevo API key.
+3. Leave `BREVO_LIST_NAME=WAITLIST` unless you want a different list name.
+4. Start the API server in one terminal:
+
+```bash
+npm run start:server
+```
+
+5. Start the React app in a second terminal:
+
+```bash
+npm start
+```
+
+The React dev server proxies `/api/waitlist` to `http://localhost:3001`, so the browser can keep using `fetch("/api/waitlist")`.
+
 ## Available Scripts
 
 In the project directory, you can run:
