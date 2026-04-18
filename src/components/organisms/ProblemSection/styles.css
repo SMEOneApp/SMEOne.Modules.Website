@@ -1,3 +1,16 @@
+.problem-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green);
+}
+
+.problem-label svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
 .problem-section {
   position: relative;
   padding: 80px 0 110px;

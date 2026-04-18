@@ -1,9 +1,9 @@
 import React from "react";
-import Label from "../../atoms/Label";
+import { ReactComponent as LeafIcon } from "../../../assets/images/svg assets/leaf.svg";
 import crm from "../../../assets/images/crm.png";
 import digiWallet from "../../../assets/images/digi-wallet.png";
 import smartAccounting from "../../../assets/images/smart-accounting.png";
-import manHome from "../../../assets/images/man-home.jpg";
+import manHome from "../../../assets/images/solution_bg.png";
 import inventorySales from "../../../assets/images/inventory-sales.png";
 import "./styles.css";
 
@@ -38,7 +38,10 @@ const FeatureSection = () => {
       <div className="solution-overlay" />
       <div className="solution-inner">
         <div className="solution-copy">
-          <Label className="label-pill label-pill--green">The Solution</Label>
+          <span className="label-pill problem-label">
+            <LeafIcon aria-hidden="true" />
+            The Solution
+          </span>
           <h2>
             Everything your business
             <br />

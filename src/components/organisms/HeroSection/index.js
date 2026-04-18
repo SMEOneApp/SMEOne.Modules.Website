@@ -1,60 +1,32 @@
 import React from "react";
 import WaitlistForm from "../../molecules/WaitlistForm";
-import afroGuy from "../../../assets/images/afro-guy.png";
-import denimGirl from "../../../assets/images/denim-girl.png";
-import dreadGuy from "../../../assets/images/dread-guy.png";
-import emoji from "../../../assets/images/emoji.png";
-import ipadGuy from "../../../assets/images/ipad-guy.png";
-import revenue from "../../../assets/images/revenue.png";
-import smiling from "../../../assets/images/smiling.png";
+import avatar1 from "../../../assets/images/1.00.png";
+import avatar2 from "../../../assets/images/2.00.png";
+import avatar3 from "../../../assets/images/3.00.png";
+import avatar4 from "../../../assets/images/4.00.png";
+import avatar5 from "../../../assets/images/6.00.png";
+import avatar6 from "../../../assets/images/5.00.png";
+import mockup from "../../../assets/images/revenue.png";
+import avatar_arrow from "../../../assets/images/avatar-arrow.png";
 import "./styles.css";
-
-const portraits = [
-  {
-    src: denimGirl,
-    alt: "Business owner smiling",
-    className: "portrait portrait--1",
-  },
-  {
-    src: ipadGuy,
-    alt: "Business owner holding an iPad",
-    className: "portrait portrait--2",
-  },
-  {
-    src: afroGuy,
-    alt: "Business owner seated outdoors",
-    className: "portrait portrait--3",
-  },
-  {
-    src: smiling,
-    alt: "Business owner holding a tablet",
-    className: "portrait portrait--4",
-  },
-  {
-    src: dreadGuy,
-    alt: "Business owner reviewing inventory",
-    className: "portrait portrait--5",
-  },
-  {
-    src: denimGirl,
-    alt: "Business owner portrait",
-    className: "portrait portrait--6",
-  },
-];
 
 const HeroSection = () => {
   return (
     <main className="hero-section section" id="hero">
       <div className="hero-grid-bg" />
+
       <div className="hero-analytics-card">
-        <img src={revenue} alt="Revenue versus expenses insight" />
+        <img src={mockup} alt="App dashboard" />
       </div>
 
-      {portraits.map((portrait) => (
-        <div key={portrait.className} className={portrait.className}>
-          <img src={portrait.src} alt={portrait.alt} />
-        </div>
-      ))}
+      <div className="hero-portraits">
+        <img src={avatar1} alt="" className="portrait portrait--1" />
+        <img src={avatar2} alt="" className="portrait portrait--2" />
+        <img src={avatar3} alt="" className="portrait portrait--3" />
+        <img src={avatar4} alt="" className="portrait portrait--4" />
+        <img src={avatar5} alt="" className="portrait portrait--5" />
+        <img src={avatar6} alt="" className="portrait portrait--6" />
+      </div>
 
       <div className="hero-copy">
         <h1>
@@ -69,9 +41,8 @@ const HeroSection = () => {
       </div>
 
       <div className="hero-assistant">
-        <span className="hero-assistant__arrow">↶</span>
         <div className="hero-assistant__avatar">
-          <img src={emoji} alt="Assistant avatar" />
+          <img src={avatar_arrow} alt="Assistant avatar" />
         </div>
       </div>
     </main>

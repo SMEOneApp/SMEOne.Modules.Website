@@ -1,31 +1,35 @@
 import React, { useEffect, useRef, useState } from "react";
-import Label from "../../atoms/Label";
-import smiling from "../../../assets/images/smiling.png";
+import smiling from "../../../assets/images/2.00.png";
 import yellowJacket from "../../../assets/images/yellow-jacket.png";
-import ipadGuy from "../../../assets/images/ipad-guy.png";
+import ipadGuy from "../../../assets/images/3.00.png";
+import { ReactComponent as LeafIcon } from "../../../assets/images/svg assets/leaf.svg";
+import { ReactComponent as TrackIcon } from "../../../assets/images/svg assets/track.svg";
+import { ReactComponent as CustomersIcon } from "../../../assets/images/svg assets/customers.svg";
+import { ReactComponent as DollarIcon } from "../../../assets/images/svg assets/dollar.svg";
+import { ReactComponent as BoxIcon } from "../../../assets/images/svg assets/box.svg";
 import "./styles.css";
 
 const problems = [
   {
-    icon: "↘",
+    icon: <TrackIcon aria-hidden="true" />,
     title: "Tracking sales manually is stressful",
     description:
       "Keeping up with daily transactions across notebooks and spreadsheets",
   },
   {
-    icon: "◎",
+    icon: <CustomersIcon aria-hidden="true" />,
     title: "Managing customers across apps is messy",
     description:
       "Customer data scattered everywhere makes follow-ups impossible",
   },
   {
-    icon: "$",
+    icon: <DollarIcon aria-hidden="true" />,
     title: "You don't always know your real profit",
     description:
       "Without clear insights, you might be losing money without realizing it",
   },
   {
-    icon: "◫",
+    icon: <BoxIcon aria-hidden="true" />,
     title: "Payments and cash flow are hard to track",
     description:
       "Missing payments and unclear balances create constant uncertainty",
@@ -69,7 +73,10 @@ const ProblemSection = () => {
     >
       <div className="problem-shell">
         <div className="problem-copy">
-          <Label className="label-pill label-pill--green">The Problem</Label>
+          <span className="label-pill problem-label">
+            <LeafIcon aria-hidden="true" />
+            The Problem
+          </span>
           <h2>
             Running a business shouldn't feel <span>this hard</span>
           </h2>

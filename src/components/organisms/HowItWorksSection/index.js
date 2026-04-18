@@ -1,5 +1,5 @@
 import React from "react";
-import Label from "../../atoms/Label";
+import { ReactComponent as LeafIcon } from "../../../assets/images/svg assets/leaf.svg";
 import iphone15Pro from "../../../assets/images/iphone-15-pro.png";
 import iPhoneAcct from "../../../assets/images/iPhone-accounting.png";
 import iphone15Pro1 from "../../../assets/images/iphone-15-pro-1.png";
@@ -42,7 +42,10 @@ const HowItWorksSection = () => {
   return (
     <section className="section section--how" id="works">
       <div className="section-heading section-heading--center">
-        <Label className="label-pill label-pill--green">How it Works</Label>
+        <span className="label-pill problem-label">
+            <LeafIcon aria-hidden="true" />
+            How it Works
+          </span>
         <h2>
           Get started with <span>SMEOne</span> in minutes
         </h2>

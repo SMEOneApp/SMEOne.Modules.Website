@@ -1,12 +1,17 @@
 .countdown-section {
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: 36px;
-  align-items: center;
   padding: 48px 0;
   background-image: url("../../../assets/images/timer.jpg");
   background-size: cover;
   background-position: center;
+}
+
+.countdown-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+  width: min(1280px, calc(100% - 40px));
+  margin: 0 auto;
 }
 
 .countdown-copy {
@@ -149,19 +154,23 @@
 }
 
 @media (max-width: 1200px) {
-  .countdown-section {
+  .countdown-inner {
     grid-template-columns: 1fr;
+  }
+
+  .countdown-copy {
+    text-align: center;
   }
 }
 
 @media (max-width: 900px) {
   .countdown-section {
-    gap: 28px;
     padding: 40px 0;
   }
 
-  .countdown-copy {
-    text-align: center;
+  .countdown-inner {
+    width: min(100%, calc(100% - 24px));
+    gap: 28px;
   }
 
   .countdown-panel {
