@@ -9,7 +9,7 @@ const CountdownSection = ({ timeLeft }) => {
         <div className="countdown-copy">
           <span className="countdown-kicker">SMEOne Launch Countdown Timer</span>
           <h2>
-            Watch this <span>space!!!</span>
+            Watch out this <span>space!!!</span>
           </h2>
         </div>
 

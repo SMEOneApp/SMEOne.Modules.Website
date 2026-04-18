@@ -144,7 +144,9 @@
   .solution-grid {
     grid-template-columns: 1fr;
     justify-content: stretch;
-    gap: 24px;
+    gap: 16px;
+    margin-bottom: 0;
+    margin-top: 40px;
   }
 
   .solution-grid .solution-card__image,
@@ -153,15 +155,7 @@
   .solution-grid .solution-card__image:nth-child(3),
   .solution-grid .solution-card__image:nth-child(4) {
     width: 100%;
-    transform: none;
-  }
-
-  .solution-grid .solution-card__image img,
-  .solution-grid .solution-card__image:nth-child(1) img,
-  .solution-grid .solution-card__image:nth-child(2) img,
-  .solution-grid .solution-card__image:nth-child(3) img,
-  .solution-grid .solution-card__image:nth-child(4) img {
-    min-width: 0;
-    min-height: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
