@@ -1,5 +1,4 @@
 import React from "react";
-import WaitlistForm from "../../molecules/WaitlistForm";
 import smilingGrey from "../../../assets/images/4.00.png";
 import linkedInLogo from "../../../assets/images/svg assets/linkedin.svg";
 import facebookLogo from "../../../assets/images/svg assets/facebook.svg";
