@@ -1,8 +1,8 @@
 .solution-section {
   position: relative;
-  padding: 102px 0 0;
+  padding: 102px 0 80px;
   min-height: 727px;
-  overflow: hidden;
+  overflow: visible;
   background-position: left;
   background-size: cover;
   background-repeat: no-repeat;
@@ -55,74 +55,66 @@
 }
 
 .solution-grid {
-  margin-top: 44px;
+  margin-top: 80px;
+  margin-bottom: -200px;
   display: grid;
-  grid-template-columns: 251px 316px 228px 251px;
-  gap: 18px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
   align-items: end;
-  justify-content: space-between;
+  position: relative;
+  z-index: 10;
 }
 
 .solution-card__image {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  position: relative;
   align-self: end;
   z-index: 2;
-  transition: transform 0.35s ease, filter 0.35s ease;
+  height: 380px;
+  overflow: hidden;
+  border-radius: 16px;
   animation: fade-up 0.85s ease-out both;
+  cursor: pointer;
 }
 
-.solution-grid .solution-card__image:nth-child(1) {
-  transform: translateY(0);
-  animation-delay: 0.12s;
-}
-
-.solution-grid .solution-card__image:nth-child(2) {
-  transform: translateY(14px);
-  animation-delay: 0.22s;
-}
-
-.solution-grid .solution-card__image:nth-child(3) {
-  transform: translateY(10px);
-  animation-delay: 0.32s;
-}
-
-.solution-grid .solution-card__image:nth-child(4) {
-  transform: translateY(-28px);
-  animation-delay: 0.42s;
-}
-
-.solution-card__image:hover {
-  transform: translateY(-12px) scale(1.02);
-  filter: drop-shadow(0 24px 34px rgba(8, 18, 44, 0.22));
-}
+.solution-grid .solution-card__image:nth-child(1) { animation-delay: 0.12s; }
+.solution-grid .solution-card__image:nth-child(2) { animation-delay: 0.22s; margin-left: 10px; }
+.solution-grid .solution-card__image:nth-child(3) { animation-delay: 0.32s; margin-left: -12px; margin-right: -20px; }
+.solution-grid .solution-card__image:nth-child(4) { animation-delay: 0.42s; margin-left: -12px; }
 
 .solution-card__image img {
+  position: absolute;
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+/* Smart Accounting — adjust with top/left/transform */
 .solution-grid .solution-card__image:nth-child(1) img {
-  min-width: 334px;
-  min-height: 376px;
+  object-position: top center;
 }
 
+/* Inventory and Sales — adjust with top/left/transform */
 .solution-grid .solution-card__image:nth-child(2) img {
-  min-width: 386px;
-  min-height: 376px;
+  object-position: top center;
 }
 
+/* Digital Wallet — adjust with top/left/transform */
 .solution-grid .solution-card__image:nth-child(3) img {
-  min-width: 287px;
-  min-height: 376px;
+  object-position: top center;
 }
 
+/* CRM — adjust with top/left/transform */
 .solution-grid .solution-card__image:nth-child(4) img {
-  min-width: 335px;
-  min-height: 376px;
+  object-position: top center;
 }
+
+.solution-card__image:hover img {
+  transform: translateY(-14px) scale(1.05);
+  filter: drop-shadow(0 24px 32px rgba(14, 165, 157, 0.45)) brightness(1.07);
+}
+
 
 @media (max-width: 1200px) {
   .solution-grid {
