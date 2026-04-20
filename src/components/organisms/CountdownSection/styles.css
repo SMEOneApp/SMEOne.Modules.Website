@@ -183,6 +183,7 @@
   .countdown-inner {
     width: min(100%, calc(100% - 24px));
     gap: 28px;
+    padding-left: 0;
   }
 
   .countdown-panel {
