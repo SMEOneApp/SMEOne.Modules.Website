@@ -12,6 +12,7 @@
   align-items: center;
   width: min(1280px, calc(100% - 40px));
   margin: 0 auto;
+  padding-left: 35px;
 }
 
 .countdown-copy {
