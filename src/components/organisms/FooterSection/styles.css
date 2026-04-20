@@ -199,6 +199,8 @@
   .footer-links {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+    justify-items: center;
+    text-align: center;
   }
 
   .footer-bottom-inner {
@@ -217,6 +219,8 @@
 @media (max-width: 560px) {
   .footer-links {
     grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
   }
 
   .footer-tagline {

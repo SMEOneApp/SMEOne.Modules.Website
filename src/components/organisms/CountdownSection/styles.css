@@ -164,6 +164,14 @@
   .countdown-copy {
     text-align: center;
   }
+
+  .countdown-kicker {
+    justify-content: center;
+  }
+
+  .countdown-sub {
+    margin: 22px auto 0;
+  }
 }
 
 @media (max-width: 900px) {

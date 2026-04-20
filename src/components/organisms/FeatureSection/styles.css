@@ -37,6 +37,10 @@
   animation: fade-up 0.85s ease-out both;
 }
 
+.h2-line {
+  display: block;
+}
+
 .solution-copy h2 {
   margin: 20px 0 0;
   font-size: clamp(3rem, 5vw, 4.4rem);
@@ -137,11 +141,7 @@
     max-width: 100%;
   }
 
-  .solution-copy h2 br {
-    display: none;
-  }
-
-  .solution-grid {
+.solution-grid {
     grid-template-columns: 1fr;
     justify-content: stretch;
     gap: 16px;

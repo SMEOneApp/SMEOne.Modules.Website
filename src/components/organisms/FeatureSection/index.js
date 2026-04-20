@@ -43,9 +43,8 @@ const FeatureSection = () => {
             The Solution
           </span>
           <h2>
-            Everything your business
-            <br />
-            needs, in ONE APP
+            <span className="h2-line">Everything your business</span>
+            <span className="h2-line">needs, in ONE APP</span>
           </h2>
           <p>
             Empower your business with cutting-edge software solutions designed

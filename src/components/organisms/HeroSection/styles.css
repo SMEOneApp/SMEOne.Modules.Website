@@ -262,9 +262,7 @@
     align-items: center;
   }
 
-  .hero-grid-bg,
-  .hero-analytics-card,
-  .hero-assistant { display: none; }
+  .hero-grid-bg { display: none; }
 
   /* Switch portraits from absolute to a visible flex strip */
   .hero-portraits {
@@ -294,6 +292,29 @@
   .hero-copy p {
     font-size: 15px;
   }
+
+  /* Revenue card — static, centered below the form */
+  .hero-analytics-card {
+    position: static;
+    width: 80px;
+    margin: 28px auto 0;
+    animation: none;
+    border-radius: 12px;
+  }
+
+  /* Avatar-arrow — static, centered below the revenue card */
+  .hero-assistant {
+    position: static;
+    margin: 16px auto 0;
+    animation: none;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-assistant__avatar {
+    width: 80px;
+    height: 64px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -309,6 +330,10 @@
 
   .hero-copy h1 {
     font-size: clamp(30px, 8vw, 40px);
+  }
+
+  .hero-copy h1 span {
+    white-space: normal;
   }
 }
 
