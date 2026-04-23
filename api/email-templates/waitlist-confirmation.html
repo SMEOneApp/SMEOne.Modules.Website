@@ -5,67 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>You're on the SMEOne Waitlist!</title>
+  <style type="text/css">
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
+    body { margin: 0 !important; padding: 0 !important; background-color: #f0f2f5; }
+    a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; }
+    @media screen and (max-width: 620px) {
+      .email-wrapper { width: 100% !important; }
+      .email-card  { width: 100% !important; }
+      .content-pad { padding: 20px 16px !important; }
+      .social-left, .social-right { display: block !important; width: 100% !important; text-align: center !important; padding-bottom: 12px; }
+    }
+  </style>
 </head>
 <body style="margin:0; padding:0; background-color:#f0f2f5;">
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f2f5;">
+<table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f2f5;">
   <tr>
-    <td align="center" style="padding:32px 0;">
+    <td align="center" style="padding:32px 16px;">
 
-      <!-- Top teal accent bar -->
-      <table width="600" border="0" cellspacing="0" cellpadding="0">
+      <!-- Wrapper keeps all three sections (teal bar / card / dark footer) in one column -->
+      <table role="presentation" class="email-wrapper" width="600" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto;">
+
+        <!-- Top teal accent bar -->
         <tr>
           <td height="6" style="background-color:#0ea59d; border-radius:6px 6px 0 0; font-size:0; line-height:0;">&nbsp;</td>
         </tr>
-      </table>
 
-      <!-- Main card -->
-      <table width="600" border="0" cellspacing="0" cellpadding="0" style="border-left:1px solid #cccccc; border-right:1px solid #cccccc; background-color:#ffffff;">
-
-        <!-- Header image -->
+        <!-- ===================== MAIN CARD ===================== -->
         <tr>
-          <td align="center" style="padding:0; margin:0;">
-            <img src="{{SITE_URL}}/email-images/SMEOne_Email_bg.png" width="600" alt="SMEOne" style="display:block; width:100%; max-width:600px; border:0;" />
-          </td>
-        </tr>
+          <td style="background-color:#ffffff; border-left:1px solid #cccccc; border-right:1px solid #cccccc;">
 
-        <!-- Body content -->
-        <tr>
-          <td width="20" style="width:20px;">&nbsp;</td>
-          <td valign="top" style="padding:28px 0;">
+            <table role="presentation" class="email-card" width="100%" border="0" cellspacing="0" cellpadding="0">
 
-            <table width="560" border="0" cellspacing="0" cellpadding="0">
-
-              <!-- Greeting -->
+              <!-- Header image -->
               <tr>
-                <td style="font-family:Calibri,Arial,sans-serif; font-size:16px; color:#111827; padding-bottom:4px;">
-                  Dear <strong>{{FIRST_NAME}} {{LAST_NAME}}</strong>,
+                <td align="center" style="padding:0; margin:0; font-size:0; line-height:0;">
+                  <img src="{{SITE_URL}}/email-images/SMEOne_Email_bg.png" width="600" alt="SMEOne" style="display:block; width:100%; max-width:600px; border:0;" />
                 </td>
               </tr>
 
-              <!-- Blank line -->
-              <tr><td height="12">&nbsp;</td></tr>
-
-              <!-- Confirmation message -->
+              <!-- Body content -->
               <tr>
-                <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7;">
-                  You've officially joined the <strong>SMEOne Waitlist</strong> — great decision! &#127881;
-                  <br /><br />
-                  You've just taken a smart step toward running your business more efficiently.
-                  With <strong>SMEOne</strong>, you can manage your sales, track customers, stay on top
-                  of your finances, and make better decisions — all in one place.
-                  <br /><br />
-                  Your email has been successfully added. <strong>We'll notify you the moment SMEOne launches.</strong>
-                </td>
-              </tr>
+                <td class="content-pad" style="padding:28px 32px;">
 
-              <!-- Blank line -->
-              <tr><td height="20">&nbsp;</td></tr>
+                  <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
 
-              <!-- Confirmation badge -->
-              <tr>
-                <td>
-                  <table border="0" cellspacing="0" cellpadding="0">
+                    <!-- Greeting -->
+                    <tr>
+                      <td style="font-family:Calibri,Arial,sans-serif; font-size:16px; color:#111827; padding-bottom:4px;">
+                        Dear <strong>{{FIRST_NAME}} {{LAST_NAME}}</strong>,
+                      </td>
+                    </tr>
+
+                    <tr><td height="12" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+
+                    <!-- Confirmation message -->
+                    <tr>
+                      <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7;">
+                        You've officially joined the <strong>SMEOne Waitlist</strong> — great decision! &#127881;
+                        <br /><br />
+                        You've just taken a smart step toward running your business more efficiently.
+                        With <strong>SMEOne</strong>, you can manage your sales, track customers, stay on top
+                        of your finances, and make better decisions — all in one place.
+                        <br /><br />
+                        Your email has been successfully added. <strong>We'll notify you the moment SMEOne launches.</strong>
+                      </td>
+                    </tr>
+
+                    <tr><td height="20" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+
+                    <!-- Confirmation badge -->
                     <tr>
                       <td style="background-color:#ecfdf5; border-left:4px solid #0ea59d; padding:12px 16px;">
                         <span style="font-family:Calibri,Arial,sans-serif; font-size:15px; font-weight:bold; color:#065f46;">
@@ -73,148 +84,131 @@
                         </span>
                       </td>
                     </tr>
-                  </table>
-                </td>
-              </tr>
 
-              <!-- Blank line -->
-              <tr><td height="24">&nbsp;</td></tr>
+                    <tr><td height="24" style="font-size:0; line-height:0;">&nbsp;</td></tr>
 
-              <!-- What you can do label -->
-              <tr>
-                <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7;">
-                  Here's what you'll be able to do right away:
-                </td>
-              </tr>
-
-              <!-- Blank line -->
-              <tr><td height="12">&nbsp;</td></tr>
-
-              <!-- Feature: CRM -->
-              <tr>
-                <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7; padding-bottom:8px;">
-                  &bull;&nbsp;&nbsp; Organise and manage your customers <strong>(CRM)</strong>
-                </td>
-              </tr>
-
-              <!-- Feature: Inventory -->
-              <tr>
-                <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7; padding-bottom:8px;">
-                  &bull;&nbsp;&nbsp; Track <strong>sales and inventory</strong> with ease
-                </td>
-              </tr>
-
-              <!-- Feature: Dashboard -->
-              <tr>
-                <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7; padding-bottom:8px;">
-                  &bull;&nbsp;&nbsp; Monitor your <strong>business performance</strong> from your dashboard
-                </td>
-              </tr>
-
-              <!-- Feature: Accounting -->
-              <tr>
-                <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7;">
-                  &bull;&nbsp;&nbsp; Stay in control of your finances with <strong>Smart Accounting</strong>
-                </td>
-              </tr>
-
-              <!-- Blank line -->
-              <tr><td height="24">&nbsp;</td></tr>
-
-              <!-- Closing -->
-              <tr>
-                <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7;">
-                  We've designed everything to be simple, intuitive, and built specifically for growing
-                  businesses like yours. If you ever need help getting started, we're here for you.
-                  <br /><br />
-                  Let's build something great together &#128640;
-                </td>
-              </tr>
-
-              <!-- Blank line -->
-              <tr><td height="24">&nbsp;</td></tr>
-
-              <!-- CTA Button -->
-              <tr>
-                <td>
-                  <table border="0" cellspacing="0" cellpadding="0">
+                    <!-- What you can do label -->
                     <tr>
-                      <td align="center" style="background-color:#0ea59d; border-radius:999px;">
-                        <a href="{{SITE_URL}}" target="_blank"
-                          style="display:inline-block; padding:13px 32px; font-family:Calibri,Arial,sans-serif; font-size:15px; font-weight:bold; color:#ffffff; text-decoration:none; border-radius:999px;">
-                          Visit SMEOne &rarr;
-                        </a>
+                      <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7;">
+                        Here's what you'll be able to do right away:
                       </td>
                     </tr>
-                  </table>
-                </td>
-              </tr>
 
-              <!-- Blank line -->
-              <tr><td height="28">&nbsp;</td></tr>
+                    <tr><td height="12" style="font-size:0; line-height:0;">&nbsp;</td></tr>
 
-              <!-- Divider strip -->
-              <tr>
-                <td height="5" colspan="1" style="background-color:#0ea59d; font-size:0; line-height:0; border-radius:2px;">&nbsp;</td>
-              </tr>
-
-              <!-- Blank line -->
-              <tr><td height="20">&nbsp;</td></tr>
-
-              <!-- Social icons + contact info row -->
-              <tr>
-                <td>
-                  <table width="560" border="0" cellspacing="0" cellpadding="0">
+                    <!-- Features -->
                     <tr>
+                      <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7; padding-bottom:8px;">
+                        &bull;&nbsp;&nbsp; Organise and manage your customers <strong>(CRM)</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7; padding-bottom:8px;">
+                        &bull;&nbsp;&nbsp; Track <strong>sales and inventory</strong> with ease
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7; padding-bottom:8px;">
+                        &bull;&nbsp;&nbsp; Monitor your <strong>business performance</strong> from your dashboard
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7;">
+                        &bull;&nbsp;&nbsp; Stay in control of your finances with <strong>Smart Accounting</strong>
+                      </td>
+                    </tr>
 
-                      <!-- Social icons left -->
-                      <td width="280" align="left" valign="top">
-                        <span style="font-family:Calibri,Arial,sans-serif; font-size:12px; font-weight:bold; color:#6b7280; text-transform:uppercase; letter-spacing:0.05em;">
-                          Follow us for updates
-                        </span>
+                    <tr><td height="24" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+
+                    <!-- Closing -->
+                    <tr>
+                      <td style="font-family:Calibri,Arial,sans-serif; font-size:15px; color:#374151; line-height:1.7;">
+                        We've designed everything to be simple, intuitive, and built specifically for growing
+                        businesses like yours. If you ever need help getting started, we're here for you.
                         <br /><br />
-                        <a href="https://www.instagram.com/smeone.africa/" target="_blank" style="text-decoration:none;">
-                          <img src="{{SITE_URL}}/email-images/instagram.svg" width="28" height="28" alt="Instagram" style="border:0; display:inline-block; vertical-align:middle;" />
-                        </a>&nbsp;&nbsp;
-                        <a href="https://www.facebook.com/profile.php?id=61578468181199" target="_blank" style="text-decoration:none;">
-                          <img src="{{SITE_URL}}/email-images/facebook.svg" width="28" height="28" alt="Facebook" style="border:0; display:inline-block; vertical-align:middle;" />
-                        </a>&nbsp;&nbsp;
-                        <a href="https://www.linkedin.com/company/smeoneafrica" target="_blank" style="text-decoration:none;">
-                          <img src="{{SITE_URL}}/email-images/linkedin.svg" width="28" height="28" alt="LinkedIn" style="border:0; display:inline-block; vertical-align:middle;" />
-                        </a>&nbsp;&nbsp;
-                        <a href="https://x.com/smeoneafrica" target="_blank" style="text-decoration:none;">
-                          <img src="https://abs.twimg.com/responsive-web/client-web/icon-ios.77d25eba.png" width="28" height="28" alt="X" style="border:0; display:inline-block; vertical-align:middle;" />
-                        </a>
+                        Let's build something great together &#128640;
                       </td>
-
-                      <!-- Contact right -->
-                      <td width="280" align="right" valign="top" style="font-family:Calibri,Arial,sans-serif; font-size:13px; color:#6b7280; line-height:1.8;">
-                        Questions? Email us at<br />
-                        <a href="mailto:{{SUPPORT_EMAIL}}" style="color:#0ea59d; font-weight:bold; text-decoration:none;">{{SUPPORT_EMAIL}}</a><br />
-                        <a href="{{SITE_URL}}" style="color:#0ea59d; text-decoration:none; font-size:12px;">{{SITE_URL}}</a>
-                      </td>
-
                     </tr>
+
+                    <tr><td height="24" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+
+                    <!-- CTA Button -->
+                    <tr>
+                      <td>
+                        <table role="presentation" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="center" style="background-color:#0ea59d; border-radius:999px;">
+                              <a href="{{SITE_URL}}" target="_blank"
+                                style="display:inline-block; padding:13px 32px; font-family:Calibri,Arial,sans-serif; font-size:15px; font-weight:bold; color:#ffffff; text-decoration:none; border-radius:999px;">
+                                Visit SMEOne &rarr;
+                              </a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr><td height="28" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+
+                    <!-- Divider strip -->
+                    <tr>
+                      <td height="5" style="background-color:#0ea59d; font-size:0; line-height:0; border-radius:2px;">&nbsp;</td>
+                    </tr>
+
+                    <tr><td height="20" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+
+                    <!-- Social icons + contact info -->
+                    <tr>
+                      <td>
+                        <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <!-- Social icons left -->
+                            <td class="social-left" width="50%" align="left" valign="top">
+                              <span style="font-family:Calibri,Arial,sans-serif; font-size:12px; font-weight:bold; color:#6b7280; text-transform:uppercase; letter-spacing:0.05em;">
+                                Follow us for updates
+                              </span>
+                              <br /><br />
+                              <a href="https://www.instagram.com/smeone.africa/" target="_blank" style="text-decoration:none;">
+                                <img src="{{SITE_URL}}/email-images/instagram.svg" width="28" height="28" alt="Instagram" style="border:0; display:inline-block; vertical-align:middle;" />
+                              </a>&nbsp;&nbsp;
+                              <a href="https://www.facebook.com/profile.php?id=61578468181199" target="_blank" style="text-decoration:none;">
+                                <img src="{{SITE_URL}}/email-images/facebook.svg" width="28" height="28" alt="Facebook" style="border:0; display:inline-block; vertical-align:middle;" />
+                              </a>&nbsp;&nbsp;
+                              <a href="https://www.linkedin.com/company/smeoneafrica" target="_blank" style="text-decoration:none;">
+                                <img src="{{SITE_URL}}/email-images/linkedin.svg" width="28" height="28" alt="LinkedIn" style="border:0; display:inline-block; vertical-align:middle;" />
+                              </a>&nbsp;&nbsp;
+                              <a href="https://x.com/smeoneafrica" target="_blank" style="text-decoration:none;">
+                                <img src="https://abs.twimg.com/responsive-web/client-web/icon-ios.77d25eba.png" width="28" height="28" alt="X" style="border:0; display:inline-block; vertical-align:middle;" />
+                              </a>
+                            </td>
+
+                            <!-- Contact right -->
+                            <td class="social-right" width="50%" align="right" valign="top" style="font-family:Calibri,Arial,sans-serif; font-size:13px; color:#6b7280; line-height:1.8;">
+                              Questions? Email us at<br />
+                              <a href="mailto:{{SUPPORT_EMAIL}}" style="color:#0ea59d; font-weight:bold; text-decoration:none;">{{SUPPORT_EMAIL}}</a><br />
+                              <a href="{{SITE_URL}}" style="color:#0ea59d; text-decoration:none; font-size:12px;">{{SITE_URL}}</a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr><td height="20" style="font-size:0; line-height:0;">&nbsp;</td></tr>
+
                   </table>
+
                 </td>
               </tr>
-
-              <!-- Blank line -->
-              <tr><td height="20">&nbsp;</td></tr>
 
             </table>
-
           </td>
-          <td width="20" style="width:20px;">&nbsp;</td>
         </tr>
+        <!-- ===================== END MAIN CARD ===================== -->
 
-      </table>
-
-      <!-- Bottom dark footer -->
-      <table width="600" border="0" cellspacing="0" cellpadding="0">
+        <!-- Bottom dark footer -->
         <tr>
           <td style="background-color:#060535; padding:18px 20px; border-radius:0 0 6px 6px;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td align="left" valign="middle" style="font-family:Calibri,Arial,sans-serif; font-size:12px; color:rgba(255,255,255,0.45); line-height:1.6;">
                   &copy; 2026 SMEOne Digital Services Limited. All rights reserved.<br />
@@ -229,7 +223,9 @@
             </table>
           </td>
         </tr>
+
       </table>
+      <!-- End wrapper -->
 
     </td>
   </tr>
