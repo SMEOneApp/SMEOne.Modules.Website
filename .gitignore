@@ -13,3 +13,4 @@ node_modules
 /.vs
 
 /src/generated/prisma
+.claude/settings.local.json
