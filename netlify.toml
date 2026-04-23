@@ -1,0 +1,7 @@
+[build]
+  command = "prisma generate && react-scripts build"
+  publish = "build"
+  functions = "api"
+
+[functions]
+  node_bundler = "esbuild"

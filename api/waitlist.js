@@ -137,8 +137,12 @@ module.exports = async (req, res) => {
       });
     }
 
-    // Always persist to the database.
-    await saveToDatabase(trimmedFirstName, trimmedLastName, trimmedEmail);
+    // Persist to the database if DATABASE_URL is configured (non-fatal).
+    if (process.env.DATABASE_URL) {
+      await saveToDatabase(trimmedFirstName, trimmedLastName, trimmedEmail).catch((err) =>
+        console.error("[db] Failed to save waitlist entry:", err.message)
+      );
+    }
 
     // Sync to Brevo if the API key is configured (non-fatal if missing).
     if (process.env.BREVO_API_KEY) {
