@@ -3,6 +3,7 @@ import smilingGrey from "../../../assets/images/4.00.png";
 import linkedInLogo from "../../../assets/images/svg assets/linkedin.svg";
 import facebookLogo from "../../../assets/images/svg assets/facebook.svg";
 import instagramLogo from "../../../assets/images/svg assets/instagram.svg";
+import xLogo from "../../../assets/images/svg assets/x_logo.svg";
 import "./styles.css";
 
 const socialLinks = [
@@ -22,6 +23,12 @@ const socialLinks = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/company/smeoneafrica",
     logo: linkedInLogo,
+    iconOnly: true,
+  },
+  {
+    label: "X (Twitter)",
+    href: "https://x.com/smeoneafrica",
+    logo: xLogo,
     iconOnly: true,
   },
 ];
