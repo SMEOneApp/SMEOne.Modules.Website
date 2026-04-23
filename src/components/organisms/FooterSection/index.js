@@ -10,7 +10,7 @@ const xLogo = "https://abs.twimg.com/responsive-web/client-web/icon-ios.77d25eba
 const socialLinks = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/smeoneafrica/",
+    href: "https://www.instagram.com/smeone.africa/",
     logo: instagramLogo,
     iconOnly: true,
   },
