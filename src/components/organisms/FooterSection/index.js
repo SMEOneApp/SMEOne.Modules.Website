@@ -3,7 +3,7 @@ import smilingGrey from "../../../assets/images/4.00.png";
 import linkedInLogo from "../../../assets/images/svg assets/linkedin.svg";
 import facebookLogo from "../../../assets/images/svg assets/facebook.svg";
 import instagramLogo from "../../../assets/images/svg assets/instagram.svg";
-import xLogo from "../../../assets/images/svg assets/x_logo.svg";
+const xLogo = "https://abs.twimg.com/responsive-web/client-web/icon-ios.77d25eba.png";
 import "./styles.css";
 
 const socialLinks = [
