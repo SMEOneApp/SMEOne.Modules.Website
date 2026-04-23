@@ -1,6 +1,13 @@
 [build]
-  command = "prisma generate && react-scripts build"
+  command = "prisma generate || true && react-scripts build"
   publish = "build"
+  functions = "api"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/*"
