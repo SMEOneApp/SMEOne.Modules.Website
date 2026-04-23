@@ -1,0 +1,112 @@
+.wl-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(6, 5, 53, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: wl-fade-in 0.2s ease;
+}
+
+@keyframes wl-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.wl-modal {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 40px 36px 36px;
+  box-shadow: 0 24px 64px rgba(6, 5, 53, 0.18);
+  text-align: center;
+  animation: wl-slide-up 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes wl-slide-up {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+.wl-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.wl-modal__close:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.wl-modal__icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 20px;
+}
+
+.wl-modal__icon--success  { background: #ecfdf5; }
+.wl-modal__icon--duplicate { background: #eff6ff; }
+.wl-modal__icon--error    { background: #fef2f2; }
+
+.wl-modal__title {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #060535;
+  line-height: 1.2;
+}
+
+.wl-modal__message {
+  margin: 0 0 28px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #4b5563;
+}
+
+.wl-modal__btn {
+  display: inline-block;
+  width: 100%;
+  padding: 13px 24px;
+  border: none;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s;
+  color: #fff;
+}
+
+.wl-modal__btn--success  { background: var(--teal, #0ea59d); }
+.wl-modal__btn--duplicate { background: #3b82f6; }
+.wl-modal__btn--error    { background: #ef4444; }
+
+.wl-modal__btn:hover { filter: brightness(0.92); }
+
+@media (max-width: 480px) {
+  .wl-modal { padding: 32px 22px 28px; }
+}

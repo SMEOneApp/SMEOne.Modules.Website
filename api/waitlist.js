@@ -66,6 +66,23 @@ const saveToDatabase = async (firstName, lastName, email) => {
   });
 };
 
+const contactExistsInBrevo = async (email) => {
+  try {
+    const response = await fetch(
+      `${BREVO_BASE_URL}/contacts/${encodeURIComponent(email)}`,
+      {
+        headers: {
+          Accept: "application/json",
+          "api-key": process.env.BREVO_API_KEY,
+        },
+      }
+    );
+    return response.ok;
+  } catch {
+    return false;
+  }
+};
+
 const addToBrevo = async (firstName, lastName, email) => {
   const listId = await findOrCreateList(
     process.env.BREVO_LIST_NAME || DEFAULT_LIST_NAME
@@ -102,6 +119,13 @@ exports.handler = async (event) => {
 
     if (!trimmedFirstName || !trimmedLastName) {
       return json(400, { message: "First name and last name are required." });
+    }
+
+    if (process.env.BREVO_API_KEY) {
+      const alreadyRegistered = await contactExistsInBrevo(trimmedEmail);
+      if (alreadyRegistered) {
+        return json(409, { message: "You're already on the waitlist!" });
+      }
     }
 
     if (process.env.DATABASE_URL) {
