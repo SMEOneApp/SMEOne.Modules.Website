@@ -1,7 +1,7 @@
 import React, { useId, useState } from "react";
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
-import WaitlistModal from "./WaitlistModal";
+import Toast from "./Toast";
 
 const WaitlistForm = ({ compact = false }) => {
   const emailInputId = useId();
@@ -14,7 +14,7 @@ const WaitlistForm = ({ compact = false }) => {
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState("idle");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [modal, setModal] = useState(null);
+  const [toast, setToast] = useState(null);
 
   const resetForm = () => {
     setEmail("");
@@ -65,10 +65,9 @@ const WaitlistForm = ({ compact = false }) => {
       const payload = await response.json().catch(() => ({}));
 
       if (response.status === 409) {
-        setModal({
+        setToast({
           type: "duplicate",
-          message:
-            "Looks like you've already signed up with this email. We'll make sure to notify you when we launch!",
+          message: "Looks like you've already signed up. We'll notify you when we launch!",
         });
         resetForm();
         return;
@@ -78,18 +77,15 @@ const WaitlistForm = ({ compact = false }) => {
         throw new Error(payload.message || "Unable to join the waitlist.");
       }
 
-      setModal({
+      setToast({
         type: "success",
-        message:
-          "Welcome to the SMEOne waitlist! 🚀 Check your inbox — we've sent you a confirmation email. We'll reach out the moment we launch.",
+        message: "Welcome to the SMEOne waitlist! 🚀 We'll reach out the moment we launch.",
       });
       resetForm();
     } catch (error) {
-      setModal({
+      setToast({
         type: "error",
-        message:
-          error.message ||
-          "We couldn't add you to the waitlist right now. Please try again in a moment.",
+        message: error.message || "We couldn't add you right now. Please try again in a moment.",
       });
     } finally {
       setIsSubmitting(false);
@@ -98,11 +94,11 @@ const WaitlistForm = ({ compact = false }) => {
 
   return (
     <>
-      {modal && (
-        <WaitlistModal
-          type={modal.type}
-          message={modal.message}
-          onClose={() => setModal(null)}
+      {toast && (
+        <Toast
+          type={toast.type}
+          message={toast.message}
+          onClose={() => setToast(null)}
         />
       )}
 

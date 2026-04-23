@@ -45,6 +45,14 @@ const loadEnvFile = () => {
 
 loadEnvFile();
 
+const readBody = (req) =>
+  new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on("data", (chunk) => chunks.push(chunk));
+    req.on("end", () => resolve(Buffer.concat(chunks).toString()));
+    req.on("error", reject);
+  });
+
 const server = http.createServer(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -57,7 +65,21 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (req.url === "/api/waitlist") {
-    await waitlistHandler(req, res);
+    const body = await readBody(req);
+    const event = {
+      httpMethod: req.method,
+      headers: req.headers,
+      body,
+      queryStringParameters: {},
+    };
+
+    const result = await waitlistHandler.handler(event);
+
+    res.statusCode = result.statusCode;
+    Object.entries(result.headers || {}).forEach(([k, v]) =>
+      res.setHeader(k, v)
+    );
+    res.end(result.body);
     return;
   }
 
@@ -74,6 +96,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  // Keep startup output explicit so local debugging is easy.
   console.log(`Waitlist API listening on http://localhost:${PORT}`);
 });
