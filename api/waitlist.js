@@ -1,4 +1,3 @@
-const prisma = require("./db");
 const { sendEmail } = require("./mailer");
 
 const BREVO_BASE_URL = "https://api.brevo.com/v3";
@@ -58,7 +57,10 @@ const findOrCreateList = async (listName) => {
   return createdList.id;
 };
 
+// Lazy DB save — only requires Prisma when DATABASE_URL is present,
+// so a missing generated client never crashes the function on startup.
 const saveToDatabase = async (firstName, lastName, email) => {
+  const prisma = require("./db");
   await prisma.waitlistEntry.upsert({
     where: { email },
     update: { firstName, lastName },
@@ -121,6 +123,7 @@ exports.handler = async (event) => {
       return json(400, { message: "First name and last name are required." });
     }
 
+    // Check duplicate before doing anything else
     if (process.env.BREVO_API_KEY) {
       const alreadyRegistered = await contactExistsInBrevo(trimmedEmail);
       if (alreadyRegistered) {
@@ -128,16 +131,19 @@ exports.handler = async (event) => {
       }
     }
 
-    if (process.env.DATABASE_URL) {
-      await saveToDatabase(trimmedFirstName, trimmedLastName, trimmedEmail).catch(
-        (err) => console.error("[db] Failed to save waitlist entry:", err.message)
-      );
-    }
-
+    // Add to Brevo (primary — must succeed)
     if (process.env.BREVO_API_KEY) {
       await addToBrevo(trimmedFirstName, trimmedLastName, trimmedEmail);
     }
 
+    // Persist to DB (non-fatal)
+    if (process.env.DATABASE_URL) {
+      saveToDatabase(trimmedFirstName, trimmedLastName, trimmedEmail).catch(
+        (err) => console.error("[db] Failed to save waitlist entry:", err.message)
+      );
+    }
+
+    // Send confirmation email (non-fatal)
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
       sendEmail({
         to: trimmedEmail,
