@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import "./Toast.css";
 
 const VARIANTS = {
@@ -21,7 +22,7 @@ const Toast = ({ type, message, onClose }) => {
     return () => clearTimeout(timer);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return (
+  return ReactDOM.createPortal(
     <div className="toast-container">
       <div
         className={`toast toast--${type}${exiting ? " toast--exit" : ""}`}
@@ -39,7 +40,8 @@ const Toast = ({ type, message, onClose }) => {
         </button>
         <div className="toast__progress" />
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

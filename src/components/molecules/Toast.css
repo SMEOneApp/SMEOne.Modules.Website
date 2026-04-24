@@ -38,7 +38,7 @@
   to   { opacity: 0; transform: translateX(60px); max-height: 0; margin-bottom: -10px; }
 }
 
-.toast--success   { border-left-color: var(--teal, #0ea59d); }
+.toast--success   { border-left-color: var(--teal, #158983); }
 .toast--duplicate { border-left-color: #3b82f6; }
 .toast--error     { border-left-color: #ef4444; }
 
@@ -58,7 +58,7 @@
   margin: 0 0 3px;
   font-size: 14px;
   font-weight: 700;
-  color: #060535;
+  color: #1C2143;
   letter-spacing: -0.02em;
 }
 
@@ -100,7 +100,7 @@
   animation: toast-progress 5s linear forwards;
 }
 
-.toast--success   .toast__progress { background: var(--teal, #0ea59d); }
+.toast--success   .toast__progress { background: var(--teal, #158983); }
 .toast--duplicate .toast__progress { background: #3b82f6; }
 .toast--error     .toast__progress { background: #ef4444; }
 
