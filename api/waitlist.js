@@ -1,5 +1,85 @@
-const BACKOFFICE_API_URL =
-  "https://smeone-modules-monolith.onrender.com/api/v1/backoffice/waitlist";
+const BREVO_BASE_URL = "https://api.brevo.com/v3";
+const DEFAULT_LIST_NAME = "WAITLIST";
+
+const brevoRequest = async (path, options = {}) => {
+  const response = await fetch(`${BREVO_BASE_URL}${path}`, {
+    ...options,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "api-key": process.env.BREVO_API_KEY,
+      ...(options.headers || {}),
+    },
+  });
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.message || err.code || "Brevo request failed.");
+  }
+
+  if (response.status === 204) return null;
+  return response.json();
+};
+
+const contactExistsInBrevo = async (email) => {
+  try {
+    const response = await fetch(
+      `${BREVO_BASE_URL}/contacts/${encodeURIComponent(email)}`,
+      {
+        headers: {
+          Accept: "application/json",
+          "api-key": process.env.BREVO_API_KEY,
+        },
+      }
+    );
+    return response.ok;
+  } catch {
+    return false;
+  }
+};
+
+const findOrCreateList = async (listName) => {
+  let offset = 0;
+  const limit = 50;
+
+  while (true) {
+    const data = await brevoRequest(
+      `/contacts/lists?limit=${limit}&offset=${offset}`
+    );
+    const existing = (data.lists || []).find((l) => l.name === listName);
+    if (existing) return existing.id;
+    if (!data.lists || data.lists.length < limit) break;
+    offset += limit;
+  }
+
+  const created = await brevoRequest("/contacts/lists", {
+    method: "POST",
+    body: JSON.stringify({
+      name: listName,
+      folderId: Number(process.env.BREVO_FOLDER_ID || 1),
+    }),
+  });
+  return created.id;
+};
+
+const addToBrevo = async (firstName, lastName, email) => {
+  const listId = await findOrCreateList(
+    process.env.BREVO_LIST_NAME || DEFAULT_LIST_NAME
+  );
+  await brevoRequest("/contacts", {
+    method: "POST",
+    body: JSON.stringify({
+      email,
+      listIds: [listId],
+      updateEnabled: true,
+      attributes: {
+        FIRSTNAME: firstName,
+        LASTNAME: lastName,
+        SIGNED_UP_AT: new Date().toISOString(),
+      },
+    }),
+  });
+};
 
 module.exports = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -28,41 +108,16 @@ module.exports = async (req, res) => {
       return res.status(400).json({ message: "First name and last name are required." });
     }
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
-
-    let apiResponse;
-    try {
-      apiResponse = await fetch(BACKOFFICE_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: trimmedFirstName,
-          lastName: trimmedLastName,
-          email: trimmedEmail,
-        }),
-        signal: controller.signal,
-      });
-    } catch (fetchError) {
-      clearTimeout(timeout);
-      const isTimeout = fetchError.name === "AbortError";
-      return res.status(503).json({
-        message: isTimeout
-          ? "The server is waking up — please try again in a moment."
-          : "Could not reach the waitlist service. Please try again.",
-      });
+    if (!process.env.BREVO_API_KEY) {
+      return res.status(500).json({ message: "Waitlist service is not configured." });
     }
-    clearTimeout(timeout);
 
-    const payload = await apiResponse.json().catch(() => ({}));
-
-    if (!apiResponse.ok) {
-      const message = payload.message || "Unable to add contact to waitlist.";
-      if (message.toLowerCase().includes("already on the waitlist")) {
-        return res.status(409).json({ message: "You're already on the waitlist!" });
-      }
-      return res.status(apiResponse.status).json({ message });
+    const alreadyRegistered = await contactExistsInBrevo(trimmedEmail);
+    if (alreadyRegistered) {
+      return res.status(409).json({ message: "You're already on the waitlist!" });
     }
+
+    await addToBrevo(trimmedFirstName, trimmedLastName, trimmedEmail);
 
     // Send confirmation email (non-fatal, lazy-require so nodemailer never blocks startup)
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
@@ -87,7 +142,7 @@ module.exports = async (req, res) => {
     return res.status(200).json({ message: "You've been added to the waitlist!" });
   } catch (error) {
     return res.status(500).json({
-      message: error.message || "Unable to add contact to waitlist.",
+      message: error.message || "Unable to add to waitlist.",
     });
   }
 };
