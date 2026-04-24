@@ -293,13 +293,9 @@
     font-size: 15px;
   }
 
-  /* Revenue card — static, centered below the form */
+  /* Revenue card — hidden on mobile */
   .hero-analytics-card {
-    position: static;
-    width: 80px;
-    margin: 28px auto 0;
-    animation: none;
-    border-radius: 12px;
+    display: none;
   }
 
   /* Avatar-arrow — static, centered below the revenue card */
