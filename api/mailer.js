@@ -14,12 +14,22 @@ const createTransport = () =>
   });
 
 const loadTemplate = (templateName) => {
-  const templatePath = path.join(
-    __dirname,
-    "email-templates",
-    `${templateName}.html`
+  // Try multiple locations so this works locally AND in Vercel's bundled function runtime.
+  const candidates = [
+    path.join(__dirname, "email-templates", `${templateName}.html`),
+    path.join(process.cwd(), "api", "email-templates", `${templateName}.html`),
+    path.join(process.cwd(), "email-templates", `${templateName}.html`),
+  ];
+
+  for (const p of candidates) {
+    if (fs.existsSync(p)) {
+      return fs.readFileSync(p, "utf8");
+    }
+  }
+
+  throw new Error(
+    `Email template "${templateName}.html" not found. Looked in: ${candidates.join(", ")}`
   );
-  return fs.readFileSync(templatePath, "utf8");
 };
 
 const interpolate = (template, params) => {
@@ -31,6 +41,8 @@ const interpolate = (template, params) => {
 };
 
 const sendEmail = async ({ to, subject, templateName, params }) => {
+  console.log(`[mailer] Preparing to send "${subject}" to ${to}`);
+
   const raw = loadTemplate(templateName);
   const html = interpolate(raw, {
     PLATFORM_NAME: "SMEOne",
@@ -40,12 +52,30 @@ const sendEmail = async ({ to, subject, templateName, params }) => {
   });
 
   const transporter = createTransport();
-  await transporter.sendMail({
+
+  try {
+    await transporter.verify();
+    console.log("[mailer] SMTP connection verified");
+  } catch (verifyErr) {
+    console.error("[mailer] SMTP verify failed:", {
+      message: verifyErr.message,
+      code: verifyErr.code,
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      user: process.env.SMTP_USER,
+    });
+    throw verifyErr;
+  }
+
+  const info = await transporter.sendMail({
     from: `"${process.env.SMTP_FROM_NAME || "SMEOne"}" <${process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER}>`,
     to,
     subject,
     html,
   });
+
+  console.log(`[mailer] Sent ${info.messageId} to ${to} (accepted: ${info.accepted?.length || 0})`);
+  return info;
 };
 
 module.exports = { sendEmail };

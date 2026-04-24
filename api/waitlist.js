@@ -119,11 +119,11 @@ module.exports = async (req, res) => {
 
     await addToBrevo(trimmedFirstName, trimmedLastName, trimmedEmail);
 
-    // Send confirmation email (non-fatal, lazy-require so nodemailer never blocks startup)
+    // Send confirmation email (non-fatal — log full error but still return 200)
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
       try {
         const { sendEmail } = require("./mailer");
-        sendEmail({
+        await sendEmail({
           to: trimmedEmail,
           subject: "You're on the SMEOne Waitlist! 🎉",
           templateName: "waitlist-confirmation",
@@ -131,12 +131,17 @@ module.exports = async (req, res) => {
             FIRST_NAME: trimmedFirstName,
             LAST_NAME: trimmedLastName,
           },
-        }).catch((err) =>
-          console.error("[mailer] Failed to send confirmation email:", err.message)
-        );
+        });
       } catch (mailErr) {
-        console.error("[mailer] Failed to load mailer:", mailErr.message);
+        console.error("[mailer] Email send failed:", {
+          message: mailErr.message,
+          code: mailErr.code,
+          command: mailErr.command,
+          response: mailErr.response,
+        });
       }
+    } else {
+      console.warn("[mailer] Skipping email — SMTP_USER / SMTP_PASS not set");
     }
 
     return res.status(200).json({ message: "You've been added to the waitlist!" });
