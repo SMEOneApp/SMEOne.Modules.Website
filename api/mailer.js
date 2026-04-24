@@ -34,7 +34,7 @@ const sendEmail = async ({ to, subject, templateName, params }) => {
   const raw = loadTemplate(templateName);
   const html = interpolate(raw, {
     PLATFORM_NAME: "SMEOne",
-    SUPPORT_EMAIL: process.env.SMTP_FROM_EMAIL || "support@smeone.africa",
+    SUPPORT_EMAIL: process.env.SMTP_FROM_EMAIL || "hello@smeone.africa",
     SITE_URL: process.env.SITE_URL || "https://smeone.africa",
     ...params,
   });
