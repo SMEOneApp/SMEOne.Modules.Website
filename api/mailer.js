@@ -40,6 +40,23 @@ const interpolate = (template, params) => {
   return result;
 };
 
+const htmlToText = (html) =>
+  html
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|div|tr|h[1-6])>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#\d+;/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .replace(/[ \t]+/g, " ")
+    .trim();
+
 const sendEmail = async ({ to, subject, templateName, params }) => {
   console.log(`[mailer] Preparing to send "${subject}" to ${to}`);
 
@@ -71,6 +88,7 @@ const sendEmail = async ({ to, subject, templateName, params }) => {
     from: `"${process.env.SMTP_FROM_NAME || "SMEOne"}" <${process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER}>`,
     to,
     subject,
+    text: htmlToText(html),
     html,
   });
 
