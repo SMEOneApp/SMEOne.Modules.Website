@@ -85,11 +85,7 @@ const WaitlistForm = ({ compact = false }) => {
 
         if (response.status === 503 && retryCount.current < RETRY_LIMIT) {
           retryCount.current += 1;
-          setStatus(
-            `Server is warming up — retrying automatically (${retryCount.current}/${RETRY_LIMIT})…`
-          );
           await wait(RETRY_DELAY_MS);
-          setStatus("Retrying…");
           continue;
         }
 
