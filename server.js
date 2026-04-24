@@ -65,21 +65,28 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (req.url === "/api/waitlist") {
-    const body = await readBody(req);
-    const event = {
-      httpMethod: req.method,
-      headers: req.headers,
-      body,
-      queryStringParameters: {},
-    };
+    try {
+      const body = await readBody(req);
+      const event = {
+        httpMethod: req.method,
+        headers: req.headers,
+        body,
+        queryStringParameters: {},
+      };
 
-    const result = await waitlistHandler.handler(event);
+      const result = await waitlistHandler.handler(event);
 
-    res.statusCode = result.statusCode;
-    Object.entries(result.headers || {}).forEach(([k, v]) =>
-      res.setHeader(k, v)
-    );
-    res.end(result.body);
+      res.statusCode = result.statusCode;
+      Object.entries(result.headers || {}).forEach(([k, v]) =>
+        res.setHeader(k, v)
+      );
+      res.end(result.body);
+    } catch (err) {
+      console.error("[server] Unhandled error:", err.message);
+      res.statusCode = 500;
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify({ message: err.message || "Internal server error." }));
+    }
     return;
   }
 

@@ -1,7 +1,12 @@
-import React, { useId, useState } from "react";
+import React, { useId, useRef, useState } from "react";
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
 import Toast from "./Toast";
+
+const RETRY_LIMIT = 3;
+const RETRY_DELAY_MS = 12000;
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const WaitlistForm = ({ compact = false }) => {
   const emailInputId = useId();
@@ -15,6 +20,7 @@ const WaitlistForm = ({ compact = false }) => {
   const [statusType, setStatusType] = useState("idle");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
+  const retryCount = useRef(0);
 
   const resetForm = () => {
     setEmail("");
@@ -23,6 +29,21 @@ const WaitlistForm = ({ compact = false }) => {
     setStep("names");
     setStatus("");
     setStatusType("idle");
+    retryCount.current = 0;
+  };
+
+  const callApi = async (trimmedEmail, trimmedFirst, trimmedLast) => {
+    const response = await fetch("/api/waitlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: trimmedEmail,
+        firstName: trimmedFirst,
+        lastName: trimmedLast,
+      }),
+    });
+    const payload = await response.json().catch(() => ({}));
+    return { response, payload };
   };
 
   const handleSubmit = async (event) => {
@@ -50,19 +71,30 @@ const WaitlistForm = ({ compact = false }) => {
     setIsSubmitting(true);
     setStatus("Submitting your details...");
     setStatusType("idle");
+    retryCount.current = 0;
 
     try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: trimmedEmail,
-          firstName: firstName.trim(),
-          lastName: lastName.trim(),
-        }),
-      });
+      let response, payload;
 
-      const payload = await response.json().catch(() => ({}));
+      while (true) {
+        ({ response, payload } = await callApi(
+          trimmedEmail,
+          firstName.trim(),
+          lastName.trim()
+        ));
+
+        if (response.status === 503 && retryCount.current < RETRY_LIMIT) {
+          retryCount.current += 1;
+          setStatus(
+            `Server is warming up — retrying automatically (${retryCount.current}/${RETRY_LIMIT})…`
+          );
+          await wait(RETRY_DELAY_MS);
+          setStatus("Retrying…");
+          continue;
+        }
+
+        break;
+      }
 
       if (response.status === 409) {
         setToast({

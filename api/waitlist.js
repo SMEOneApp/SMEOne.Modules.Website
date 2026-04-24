@@ -1,5 +1,3 @@
-const { sendEmail } = require("./mailer");
-
 const BACKOFFICE_API_URL =
   "https://smeone-modules-monolith.onrender.com/api/v1/backoffice/waitlist";
 
@@ -28,15 +26,31 @@ exports.handler = async (event) => {
       return json(400, { message: "First name and last name are required." });
     }
 
-    const apiResponse = await fetch(BACKOFFICE_API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        firstName: trimmedFirstName,
-        lastName: trimmedLastName,
-        email: trimmedEmail,
-      }),
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
+    let apiResponse;
+    try {
+      apiResponse = await fetch(BACKOFFICE_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: trimmedFirstName,
+          lastName: trimmedLastName,
+          email: trimmedEmail,
+        }),
+        signal: controller.signal,
+      });
+    } catch (fetchError) {
+      clearTimeout(timeout);
+      const isTimeout = fetchError.name === "AbortError";
+      return json(503, {
+        message: isTimeout
+          ? "The server is waking up — please try again in a moment."
+          : "Could not reach the waitlist service. Please try again.",
+      });
+    }
+    clearTimeout(timeout);
 
     const payload = await apiResponse.json().catch(() => ({}));
 
@@ -48,19 +62,24 @@ exports.handler = async (event) => {
       return json(apiResponse.status, { message });
     }
 
-    // Send confirmation email (non-fatal)
+    // Send confirmation email (non-fatal, lazy-require so nodemailer never blocks startup)
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
-      sendEmail({
-        to: trimmedEmail,
-        subject: "You're on the SMEOne Waitlist! 🎉",
-        templateName: "waitlist-confirmation",
-        params: {
-          FIRST_NAME: trimmedFirstName,
-          LAST_NAME: trimmedLastName,
-        },
-      }).catch((err) =>
-        console.error("[mailer] Failed to send confirmation email:", err.message)
-      );
+      try {
+        const { sendEmail } = require("./mailer");
+        sendEmail({
+          to: trimmedEmail,
+          subject: "You're on the SMEOne Waitlist! 🎉",
+          templateName: "waitlist-confirmation",
+          params: {
+            FIRST_NAME: trimmedFirstName,
+            LAST_NAME: trimmedLastName,
+          },
+        }).catch((err) =>
+          console.error("[mailer] Failed to send confirmation email:", err.message)
+        );
+      } catch (mailErr) {
+        console.error("[mailer] Failed to load mailer:", mailErr.message);
+      }
     }
 
     return json(200, { message: "You've been added to the waitlist!" });
