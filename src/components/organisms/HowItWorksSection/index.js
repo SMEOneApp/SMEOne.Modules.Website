@@ -1,10 +1,12 @@
 import React from "react";
-import { ReactComponent as LeafIcon } from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777083095/leaf_goaken.svg";
-import iphone15Pro from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082010/iphone-15-pro_ngbtlv.png";
-import iPhoneAcct from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082011/iPhone-accounting_rtm4yq.png";
-import iphone15Pro1 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082010/iphone-15-pro_ngbtlv.png";
-import viewCustomer from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082015/view-customer_qoecwi.png";
+import { ReactComponent as LeafIcon } from "../../../assets/images/svg assets/leaf.svg";
 import "./styles.css";
+
+// Cloudinary-hosted PNGs — passed straight to <img src> so no module import needed.
+const iphone15Pro = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082010/iphone-15-pro_ngbtlv.png";
+const iPhoneAcct = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082011/iPhone-accounting_rtm4yq.png";
+const iphone15Pro1 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082010/iphone-15-pro_ngbtlv.png";
+const viewCustomer = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082015/view-customer_qoecwi.png";
 
 const steps = [
   {

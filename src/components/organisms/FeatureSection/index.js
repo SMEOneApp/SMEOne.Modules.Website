@@ -1,11 +1,13 @@
 import React from "react";
-import { ReactComponent as LeafIcon } from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777083095/leaf_goaken.svg";
-import crm from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082007/crm_n7llam.png";
-import digiWallet from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082008/digi-wallet_wct4oo.png";
-import smartAccounting from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082013/smart-accounting_w7tc8a.png";
-import manHome from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082711/solution_bg_compress_oc0fnl.png";
-import inventorySales from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082009/inventory-sales_uqjyjr.png";
+import { ReactComponent as LeafIcon } from "../../../assets/images/svg assets/leaf.svg";
 import "./styles.css";
+
+// Cloudinary-hosted PNGs — passed straight to <img src> / CSS url() so no module import needed.
+const crm = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082007/crm_n7llam.png";
+const digiWallet = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082008/digi-wallet_wct4oo.png";
+const smartAccounting = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082013/smart-accounting_w7tc8a.png";
+const manHome = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082711/solution_bg_compress_oc0fnl.png";
+const inventorySales = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082009/inventory-sales_uqjyjr.png";
 
 const features = [
   {

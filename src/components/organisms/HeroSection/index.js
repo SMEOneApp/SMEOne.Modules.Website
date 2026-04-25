@@ -1,14 +1,16 @@
 import React from "react";
 import WaitlistForm from "../../molecules/WaitlistForm";
-import avatar1 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082002/1.00_c4yny5.png";
-import avatar2 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/2.00_kgm9qx.png";
-import avatar3 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/3.00_jiwzcl.png";
-import avatar4 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/4.00_usfuoo.png";
-import avatar5 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/5.00_kizsos.png";
-import avatar6 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082012/revenue_ki8xmc.png";
-import mockup from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082012/revenue_ki8xmc.png";
-import avatar_arrow from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082005/avatar-arrow_mrzv9p.png";
 import "./styles.css";
+
+// Cloudinary-hosted assets — passed straight to <img src> so no module import needed.
+const avatar1 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082002/1.00_c4yny5.png";
+const avatar2 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/2.00_kgm9qx.png";
+const avatar3 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/3.00_jiwzcl.png";
+const avatar4 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/4.00_usfuoo.png";
+const avatar5 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/5.00_kizsos.png";
+const avatar6 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082012/revenue_ki8xmc.png";
+const mockup = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082012/revenue_ki8xmc.png";
+const avatar_arrow = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082005/avatar-arrow_mrzv9p.png";
 
 const HeroSection = () => {
   return (

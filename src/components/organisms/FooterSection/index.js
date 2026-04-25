@@ -1,9 +1,11 @@
 import React from "react";
-import smilingGrey from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/4.00_usfuoo.png";
-import linkedInLogo from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777069143/linkedin_axvdlx.svg";
-import facebookLogo from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777069143/facebook_efeij7.svg";
-import instagramLogo from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777069143/instagram_egsfm4.svg";
 import "./styles.css";
+
+// Cloudinary-hosted assets — passed straight to <img src> / CSS url() so no module import needed.
+const smilingGrey = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/4.00_usfuoo.png";
+const linkedInLogo = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777069143/linkedin_axvdlx.svg";
+const facebookLogo = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777069143/facebook_efeij7.svg";
+const instagramLogo = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777069143/instagram_egsfm4.svg";
 
 const xLogo = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777081959/twitter_duo550.png";
 
