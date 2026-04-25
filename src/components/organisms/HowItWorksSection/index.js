@@ -1,9 +1,9 @@
 import React from "react";
-import { ReactComponent as LeafIcon } from "../../../assets/images/svg assets/leaf.svg";
-import iphone15Pro from "../../../assets/images/iphone-15-pro.png";
-import iPhoneAcct from "../../../assets/images/iPhone-accounting.png";
-import iphone15Pro1 from "../../../assets/images/iphone-15-pro-1.png";
-import viewCustomer from "../../../assets/images/view-customer.png";
+import { ReactComponent as LeafIcon } from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777083095/leaf_goaken.svg";
+import iphone15Pro from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082010/iphone-15-pro_ngbtlv.png";
+import iPhoneAcct from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082011/iPhone-accounting_rtm4yq.png";
+import iphone15Pro1 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082010/iphone-15-pro_ngbtlv.png";
+import viewCustomer from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082015/view-customer_qoecwi.png";
 import "./styles.css";
 
 const steps = [

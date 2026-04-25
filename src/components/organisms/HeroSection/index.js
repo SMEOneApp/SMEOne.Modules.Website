@@ -1,13 +1,13 @@
 import React from "react";
 import WaitlistForm from "../../molecules/WaitlistForm";
-import avatar1 from "../../../assets/images/1.00.png";
-import avatar2 from "../../../assets/images/2.00.png";
-import avatar3 from "../../../assets/images/3.00.png";
-import avatar4 from "../../../assets/images/4.00.png";
-import avatar5 from "../../../assets/images/6.00.png";
-import avatar6 from "../../../assets/images/5.00.png";
-import mockup from "../../../assets/images/revenue.png";
-import avatar_arrow from "../../../assets/images/avatar-arrow.png";
+import avatar1 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082002/1.00_c4yny5.png";
+import avatar2 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/2.00_kgm9qx.png";
+import avatar3 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/3.00_jiwzcl.png";
+import avatar4 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/4.00_usfuoo.png";
+import avatar5 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/5.00_kizsos.png";
+import avatar6 from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082012/revenue_ki8xmc.png";
+import mockup from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082012/revenue_ki8xmc.png";
+import avatar_arrow from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082005/avatar-arrow_mrzv9p.png";
 import "./styles.css";
 
 const HeroSection = () => {

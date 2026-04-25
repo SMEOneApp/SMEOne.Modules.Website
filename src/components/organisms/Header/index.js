@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../../../assets/logo.svg";
+import logo from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777083096/logo_s3bdtb.svg";
 import "./styles.css";
 
 const navLinks = [

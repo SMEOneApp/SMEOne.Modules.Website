@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import smiling from "../../../assets/images/2.00.png";
-import yellowJacket from "../../../assets/images/yellow-jacket.png";
-import ipadGuy from "../../../assets/images/3.00.png";
 import { ReactComponent as LeafIcon } from "../../../assets/images/svg assets/leaf.svg";
 import { ReactComponent as TrackIcon } from "../../../assets/images/svg assets/track.svg";
 import { ReactComponent as CustomersIcon } from "../../../assets/images/svg assets/customers.svg";
 import { ReactComponent as DollarIcon } from "../../../assets/images/svg assets/dollar.svg";
 import { ReactComponent as BoxIcon } from "../../../assets/images/svg assets/box.svg";
 import "./styles.css";
+
+// Cloudinary-hosted PNGs — passed straight to <img src> so no module import needed.
+const smiling = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/2.00_kgm9qx.png";
+const yellowJacket = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082016/yellow-jacket_x978sa.png";
+const ipadGuy = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/3.00_jiwzcl.png";
 
 const problems = [
   {

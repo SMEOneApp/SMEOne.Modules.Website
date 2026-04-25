@@ -1,11 +1,11 @@
 import React from "react";
-import smilingGrey from "../../../assets/images/4.00.png";
-import linkedInLogo from "../../../assets/images/svg assets/linkedin.svg";
-import facebookLogo from "../../../assets/images/svg assets/facebook.svg";
-import instagramLogo from "../../../assets/images/svg assets/instagram.svg";
+import smilingGrey from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/4.00_usfuoo.png";
+import linkedInLogo from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777069143/linkedin_axvdlx.svg";
+import facebookLogo from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777069143/facebook_efeij7.svg";
+import instagramLogo from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777069143/instagram_egsfm4.svg";
 import "./styles.css";
 
-const xLogo = "https://abs.twimg.com/responsive-web/client-web/icon-ios.77d25eba.png";
+const xLogo = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777081959/twitter_duo550.png";
 
 const socialLinks = [
   {

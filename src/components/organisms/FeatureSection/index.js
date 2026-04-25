@@ -1,10 +1,10 @@
 import React from "react";
-import { ReactComponent as LeafIcon } from "../../../assets/images/svg assets/leaf.svg";
-import crm from "../../../assets/images/crm.png";
-import digiWallet from "../../../assets/images/digi-wallet.png";
-import smartAccounting from "../../../assets/images/smart-accounting.png";
-import manHome from "../../../assets/images/solution_bg.png";
-import inventorySales from "../../../assets/images/inventory-sales.png";
+import { ReactComponent as LeafIcon } from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777083095/leaf_goaken.svg";
+import crm from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082007/crm_n7llam.png";
+import digiWallet from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082008/digi-wallet_wct4oo.png";
+import smartAccounting from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082013/smart-accounting_w7tc8a.png";
+import manHome from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082711/solution_bg_compress_oc0fnl.png";
+import inventorySales from "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082009/inventory-sales_uqjyjr.png";
 import "./styles.css";
 
 const features = [
