@@ -71,22 +71,22 @@
 .problem-float--1 {
   left: 68%;
   top: 110px;
-  width: 90px;
-  height: 90px;
+  width: clamp(70px, 8vw, 100px);
+  height: clamp(70px, 8vw, 100px);
 }
 
 .problem-float--2 {
   left: 0;
   bottom: 60px;
-  width: 70px;
-  height: 70px;
+  width: clamp(56px, 6vw, 80px);
+  height: clamp(56px, 6vw, 80px);
 }
 
 .problem-float--3 {
   left: 70%;
   bottom: 30px;
-  width: 70px;
-  height: 70px;
+  width: clamp(56px, 6vw, 80px);
+  height: clamp(56px, 6vw, 80px);
 }
 
 .problem-list {
@@ -154,6 +154,12 @@
   .problem-shell {
     grid-template-columns: 1fr;
   }
+
+  /* Floats are absolutely positioned inside .problem-copy and only make sense
+     in the 2-column layout. Hide them once we collapse to a single column. */
+  .problem-float {
+    display: none;
+  }
 }
 
 @media (max-width: 900px) {
@@ -167,10 +173,6 @@
 
   .problem-copy {
     padding-top: 12px;
-  }
-
-  .problem-float {
-    display: none;
   }
 
   .problem-item {
