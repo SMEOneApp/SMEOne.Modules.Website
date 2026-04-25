@@ -8,7 +8,7 @@ const avatar2 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/2
 const avatar3 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082003/3.00_jiwzcl.png";
 const avatar4 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/4.00_usfuoo.png";
 const avatar5 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082004/5.00_kizsos.png";
-const avatar6 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082012/revenue_ki8xmc.png";
+const avatar6 = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082005/6.00_qsjsbr.png";
 const mockup = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082012/revenue_ki8xmc.png";
 const avatar_arrow = "https://res.cloudinary.com/dojx1kdh2/image/upload/v1777082005/avatar-arrow_mrzv9p.png";
 
