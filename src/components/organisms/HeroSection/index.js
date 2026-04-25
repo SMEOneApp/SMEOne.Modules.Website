@@ -16,7 +16,10 @@ const HeroSection = () => {
       <div className="hero-grid-bg" />
 
       <div className="hero-analytics-card">
-        <img src={mockup} alt="App dashboard" />
+        <img
+          src={mockup}
+          alt="SMEOne app dashboard showing ₦42,500 net revenue — business analytics for Nigerian SMEs"
+        />
       </div>
 
       <div className="hero-portraits">
